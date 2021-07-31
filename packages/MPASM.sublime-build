@@ -1,0 +1,16 @@
+{
+	"cmd": ["C:\\Program Files (x86)\\Microchip\\MPASM Suite\\MPASMWIN.exe", "/s", "/w1", "/l-", "/e-", "/p16F628A", "$file"],
+	"working_dir": "${project_path}\\",
+	"shell": true,
+	"variants":
+	[
+		{
+			"name": "Compile (Debug)",
+			"cmd": ["C:\\Program Files (x86)\\Microchip\\MPASM Suite\\MPASMWIN.exe", "/s", "/w1", "/l-", "/e", "/p16F628A", "$file"]
+		},
+		{
+			"name": "Compile (16F877)",
+			"cmd": ["C:\\Program Files (x86)\\Microchip\\MPASM Suite\\MPASMWIN.exe", "/s", "/w1", "/l-", "/e", "/p16F877", "$file"]
+		}
+	]
+}
