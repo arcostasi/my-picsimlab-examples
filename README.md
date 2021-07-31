@@ -19,7 +19,7 @@ Esta é uma placa com o PIC16F628A, destinada aos usuários que estão começand
 Com ela você será capaz de realizar todas as experiências existentes no livro "Desbravando o PIC",
 além de aperfeiçoar e inventar seus próprios experimentos.
 
-<img src="board_McLab1/curso_extensao_pic16F628a_ex5/curso_extensao_pic16F628a_ex5.png" alt="picsimlab imagem">
+<img src="board_McLab1/curso_extensao_pic16F628a_ex5/curso_extensao_pic16F628a_ex5.gif" alt="picsimlab imagem">
 
 
 ## Exemplos do Curso de Extensão
@@ -173,6 +173,7 @@ bit 0   RBIF: Bit de Sinalização de Interrupção por Alteração da Porta RB
 
 ## Tools
 
+- [PICSimLab 0.8.9](https://github.com/lcgamboa/picsimlab/releases/tag/v0.8.9)
 - [MPASM v5.51](https://ww1.microchip.com/downloads/en/DeviceDoc/MPLAB_IDE_8_92.zip)
 - [Sublime Text 3](https://www.sublimetext.com/3)
 - [Sublime MPASM Package](packages/MPASM.sublime-build)
