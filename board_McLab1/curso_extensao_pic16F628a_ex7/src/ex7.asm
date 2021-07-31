@@ -7,7 +7,9 @@
 ;* DESENVOLVIDO POR ANDERSON COSTA                                           *
 ;* VERSÃO 1.0                                               DATA: 30/06/2007 *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
+; AO LIGAR A PLACA ACIONA A INTERRUPÇÃO RB4 ONDE DEVERÁ ACENDER A LÂMPADA EM *
+; RA0 E UMA OUTRA INTERRUPÇÃO EM RB0 AO SER ACIONADO ATRAVÉS DO BOTÃO DEVERÁ *
+; ACIONAR O ALARME (BUZZER) LIGADO EM RB1.                                   *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ;*                          ARQUIVOS DE DEFINIÇÕES                           *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -51,8 +53,7 @@
 ; DEFINIÇÃO DE TODOS OS PINOS QUE SERÃO UTILIZADOS COMO ENTRADA
 ; RECOMENDAMOS TAMBÉM COMENTAR O SIGNIFICADO DE SEUS ESTADOS (0 E 1)
 
-#DEFINE BOT     PORTA,1
-#DEFINE BOT2    PORTA,2
+#DEFINE BOT     PORTB,0
 
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ;*                                  SAÍDAS                                   *
@@ -60,8 +61,8 @@
 ; DEFINIÇÃO DE TODOS OS PINOS QUE SERÃO UTILIZADOS COMO SAÍDA
 ; RECOMENDAMOS TAMBÉM COMENTAR O SIGNIFICADO DE SEUS ESTADOS (0 E 1)
 
-#DEFINE LED     PORTB,7
-#DEFINE LED2    PORTB,2
+#DEFINE LED     PORTA,0
+#DEFINE LED2    PORTB,1
 
 
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -102,18 +103,11 @@ INICIO
         CLRF    PORTB
 
         BANK1
-        MOVLW   B'00000110'      ;SETA AS ENTRADAS NO PORTA
+        MOVLW   B'00000000'      ;SETA AS ENTRADAS NO PORTA
         MOVWF   TRISA
-        MOVLW   B'01111011'      ;SETA AS SAÍDAS NO PORTB
+
+        MOVLW   B'00000001'      ;SETA AS SAÍDAS NO PORTB
         MOVWF   TRISB
-
-        ; BIT 3 -
-        ; BIT 4 - TOSE
-        ; BIT 5 -
-        ; OS 5 PRIMEIROS BITS SÃO EM RELAÇÃO AO TIMER 0
-
-        ; BIT 6 - CONFIGURAÇÃO DA BORDA DO RB0
-        ; BIT 7 -
 
         MOVLW   B'11000000'
         MOVWF   OPTION_REG
@@ -126,7 +120,7 @@ INICIO
         ; BIT 7 - CHAVE GERAL
 
         ; BIT   B'76543210
-        MOVLW   B'10011000'
+        MOVLW   B'10110000'
         MOVWF   INTCON
         BANK0
 
@@ -146,12 +140,12 @@ SAIDA_ISR
 
 ISR_PORTB
         BCF    INTCON,0
-        BSF    LED2
+        BSF    LED
         RETURN
 
 ISR_INT
         BCF     INTCON,1
-        BSF     LED
+        BSF     LED2
         RETURN
 
 ISR_TMR0

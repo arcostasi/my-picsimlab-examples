@@ -3,11 +3,11 @@
 ;* CURSO DE EXTENSÃO EM MICROCONTROLADORES PIC                               *
 ;* PROFESSOR EMERSON MARTINS                                                 *
 ;*---------------------------------------------------------------------------*
-;* EXERCÍCIO 09 - ROTINA PARA ACIONAR O LED APÓS 250MS AO LIGAR O PIC        *
+;* EXERCÍCIO 09 - ROTINA PARA ACIONAR O LED APÓS 200MS AO LIGAR O PIC        *
 ;* DESENVOLVIDO POR ANDERSON COSTA                                           *
 ;* VERSÃO 1.0                                               DATA: 30/06/2007 *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
+; ROTINA UTIZANDO O TIMER 0 PARA ACIONAR UM LED TEMPORIZADO                  *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ;*                          ARQUIVOS DE DEFINIÇÕES                           *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -114,7 +114,7 @@ INICIO
 MAIN
         MOVLW   .6
         MOVWF   TMR0
-        MOVLW   .250
+        MOVLW   .200
         MOVWF   CONTADOR
 
 LOOP

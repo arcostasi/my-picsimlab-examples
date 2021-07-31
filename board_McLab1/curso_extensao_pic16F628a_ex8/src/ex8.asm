@@ -7,7 +7,7 @@
 ;* DESENVOLVIDO POR ANDERSON COSTA                                           *
 ;* VERSÃO 1.0                                               DATA: 30/06/2007 *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
+; CONTADORES UTILIZANDO INTERRUPÇÃO RB0 E RB4                                *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ;*                          ARQUIVOS DE DEFINIÇÕES                           *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -62,8 +62,8 @@
 ; DEFINIÇÃO DE TODOS OS PINOS QUE SERÃO UTILIZADOS COMO SAÍDA
 ; RECOMENDAMOS TAMBÉM COMENTAR O SIGNIFICADO DE SEUS ESTADOS (0 E 1)
 
-#DEFINE LED     PORTB,7
-#DEFINE LED2    PORTB,6
+#DEFINE LED     PORTB,6
+#DEFINE LED2    PORTB,7
 
 
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -110,26 +110,18 @@ INICIO
         MOVWF   TRISB
 
         ; OS 5 PRIMEIROS BITS SÃO EM RELAÇÃO AO TIMER 0
-        ; BIT 0 -
-        ; BIT 1 -
-        ; BIT 2 -
-        ; BIT 3 -
         ; BIT 4 - TOSE
-        ; BIT 5 -
         ; BIT 6 - CONFIGURAÇÃO DA BORDA DO RB0
         ; BIT 7 - HABILITAÇÃO DO PULL-UP, ONDE 1 HABILITA E 0 DESABILITA
 
-        MOVLW   B'01000001'
+        MOVLW   B'11000001'
         MOVWF   OPTION_REG     ;DEFINE OPÇÕES DE OPERAÇÃO
 
         ; BIT 0, 1, 2 GERADORES DE FLAG OU SINALIZADORES
-        ; BIT 0 -
         ; BIT 1 - FLAG DE INTERRUPÇÃO DO RB0
         ; BIT 2 - FLAG DE INTERRUPÇÃO DO TMR0
         ; BIT 3 - HABILITAÇÃO DO RB4, ONDE 1 HABILITA E 0 DESABILITA
-        ; BIT 4 -
         ; BIT 5 - HABILITAÇÃO DO TIMER 0, ONDE 1 HABILITA E 0 DESABILITA
-        ; BIT 6 -
         ; BIT 7 - CHAVE GERAL
 
         ; BIT   76543210
@@ -161,12 +153,12 @@ ISR_SAIDA
 
 ISR_PORTB
         BCF     INTCON,0
-    BSF LED2
+        BSF     LED2
         RETURN
 
 ISR_INT
         BCF     INTCON,1
-        BSF LED
+        BSF     LED
         RETURN
 
 ISR_TMR0
@@ -176,8 +168,8 @@ ISR_TMR0
         GOTO    DEC_2
 
 CARREGA_TMR0
-        MOVLW .6
-        MOVWF TMR0
+        MOVLW   .6
+        MOVWF   TMR0
         RETURN
 
 DEC_2

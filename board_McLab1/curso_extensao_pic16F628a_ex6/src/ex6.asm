@@ -7,7 +7,8 @@
 ;* DESENVOLVIDO POR ANDERSON COSTA                                           *
 ;* VERSÃO 1.0                                               DATA: 23/06/2007 *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
+; AO ACIONAR A INTERRUPÇÃO RB0 ATRAVÉS DO BOTÃO EM RB0, A LAMPADA QUE ESTÁ   *
+; EM RA0 DEVERÁ ACENDER.                                                     *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ;*                          ARQUIVOS DE DEFINIÇÕES                           *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -51,7 +52,7 @@
 ; DEFINIÇÃO DE TODOS OS PINOS QUE SERÃO UTILIZADOS COMO ENTRADA
 ; RECOMENDAMOS TAMBÉM COMENTAR O SIGNIFICADO DE SEUS ESTADOS (0 E 1)
 
-#DEFINE BOT     PORTA,1
+#DEFINE BOT     PORTB,0
 
 
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -60,7 +61,7 @@
 ; DEFINIÇÃO DE TODOS OS PINOS QUE SERÃO UTILIZADOS COMO SAÍDA
 ; RECOMENDAMOS TAMBÉM COMENTAR O SIGNIFICADO DE SEUS ESTADOS (0 E 1)
 
-#DEFINE LED     PORTB,7
+#DEFINE LED     PORTA,0
 
 
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -101,11 +102,11 @@ INICIO
         CLRF    PORTB
 
         BANK1                  ;SELECIONA O BANCO 1 PARA TRIS E OPTION_REG
-        MOVLW   B'00000010'    ;MOVE LITERAL BINÁRIO PARA WORK
+        MOVLW   B'00000000'    ;MOVE LITERAL BINÁRIO PARA WORK
         MOVWF   TRISA          ;DEFINIÇÃO DE ENTRADA E SAÍDA DO PORTA
                                ;SETA RA1 COMO ENTRADA
 
-        MOVLW   B'01111111'    ;MOVE LITERAL BINÁRIO PARA WORK
+        MOVLW   B'00000001'    ;MOVE LITERAL BINÁRIO PARA WORK
         MOVWF   TRISB          ;DEFINIÇÃO DE ENTRADA E SAÍDA DO PORTB
                                ;SETA O PORTB COMO SAÍDA
 
@@ -118,7 +119,7 @@ INICIO
         ; BIT 5 - TO
 
         ; BIT   B'76543210
-        MOVLW   B'00000011'
+        MOVLW   B'10011000'
         MOVWF   INTCON         ;INTERRUPÇÃO RB0 ATIVADA
         BANK0                  ;RETORNA PARA O BANCO 0
 

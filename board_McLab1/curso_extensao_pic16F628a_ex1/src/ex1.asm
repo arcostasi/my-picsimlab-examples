@@ -7,7 +7,7 @@
 ;* DESENVOLVIDO POR ANDERSON COSTA                                           *
 ;* VERSÃO 1.0                                               DATA: 09/06/2007 *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-;* CONTADOR CRESCENTE DE 0 A F, APLICANDO PULSOS POSITIVOS NO BOTÃO RA4      *
+;* CONTADOR CRESCENTE DE 0 A F, APLICANDO PULSOS POSITIVOS NO BOTÃO RA1      *
 ;* O VALOR DO CONTADOR DEVERÁ SER MOSTRADO EM UM DISPLAY DE 7 SEGMENTOS,     *
 ;* QUANDO O VALOR CHEGAR A F DEVERÁ VOLTAR A ZERO.                           *
 ;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -96,7 +96,7 @@ INICIO
         BANK1                  ;SELECIONA O BANCO 1 PARA TRIS E OPTION_REG
         MOVLW   B'00000010'    ;MOVE LITERAL BINÁRIO PARA WORK
         MOVWF   TRISA          ;DEFINIÇÃO DE ENTRADA E SAÍDA DO PORTA
-                               ;RA4 COMO ENTRADA, OS OUTROS PINOS COMO SAÍDA
+                               ;RA1 COMO ENTRADA, OS OUTROS PINOS COMO SAÍDA
 
         MOVLW   B'00000000'    ;MOVE LITERAL BINÁRIO PARA WORK
         MOVWF   TRISB          ;DEFINIÇÃO DE ENTRADA E SAÍDA DO PORTB
